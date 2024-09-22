@@ -6,10 +6,10 @@ When you upload a photo of a single animal or a group of animals, this program d
 This is the homepage. The page.tsx in the app directory displays this file.
 
 - app.py  
-This is the Frask file. This file pass and receive an image from and to ImageUploader.tsx to process the image in ObjectDetection.py
+This is the Frask file. This file passes and receives an image from and to ImageUploader.tsx to process the image in ObjectDetection.py
 
 - ObjectDetection.py  
-This is the object detetion file. This file uses "google/owlv2-base-patch16-ensemble" as a check point. This file curently detect 10 animals and a person.
+This is the object detetion file. This file uses "google/owlv2-base-patch16-ensemble" as a check point. This file currently detect 10 animals and a person.
 
 
 ## Room for improvement
