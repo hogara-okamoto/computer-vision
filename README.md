@@ -1,6 +1,6 @@
 ## Computer vision
 
-When you upload a photo of a single animal or a group of animals, this program detects the animals and returns an image with their names identified.
+When you upload a photo of a single animal or a group of animals, this program detects the animals and returns an image with their names identified. To run the program locally, use npm run dev and python app.py
 
 - ImageUploader.tsx   
 This is the homepage. The page.tsx in the app directory displays this file.

@@ -45,7 +45,7 @@ def upload_file():
 
         # Pass labels for object detection (or another appropriate label)
         process = subprocess.Popen(
-            ['python', 'ObjectDetection.py', filepath, 'Lion', 'Elephant', 'Giraffe', 'Kangaroo', 'Eagle', 'Panda', 'Tiger', 'cat', 'dog', 'person'],
+            ['python', 'ObjectDetection.py', filepath, 'Lion', 'Elephant', 'Giraffe', 'Kangaroo', 'zebra', 'Panda', 'Tiger', 'cat', 'dog', 'person'],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
