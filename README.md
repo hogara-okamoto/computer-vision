@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Computer vision
 
-## Getting Started
+When you upload a photo of a single animal or a group of animals, this program detects the animals and returns an image with their names identified.
 
-First, run the development server:
+- ImageUploader.tsx 
+This is the homepage. The page.tsx in the app directory displays this file.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- app.py
+This is the Frask file. This file pass and receive an image from and to ImageUploader.tsx to process the image in ObjectDetection.py
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ObjectDetection.py
+This is the object detetion file. This file uses "google/owlv2-base-patch16-ensemble" as a check point. This file curently detect 10 animals and a person.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Room for improvement
 
-## Learn More
+1. Using Google's API takes time, so it would be better to use a model that has been trained locally.
 
-To learn more about Next.js, take a look at the following resources:
+2. Google's current API significantly reduces identification accuracy when animals overlap.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. As the number of animals to be identified increases, the object detection time increases. GPU might be able to solve this problem.
