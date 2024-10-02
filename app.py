@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 import subprocess
 from flask_cors import CORS
+import json
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -56,9 +57,20 @@ def upload_file():
         print(f"Subprocess error: {stderr}")
 
         if process.returncode == 0:
+            # Read and parse the output (assuming ObjectDetection.py outputs JSON)
+            try:
+                predictions = json.loads(stdout.strip())
+                print("Parsed JSON:", predictions)
+            except json.JSONDecodeError:
+                return jsonify({"error": "Failed to parse detection results"}), 500
+
             detection_image = f"{os.path.splitext(filepath)[0]}_detection.png"
             print(f"File processed successfully. Detection image: {detection_image}")
-            return jsonify({"message": "File processed successfully", "detection_image": detection_image}), 200
+            return jsonify({
+                "message": "File processed successfully",
+                "detection_image": detection_image,
+                "predictions": predictions  # JSON data containing bounding boxes, labels, etc.
+            }), 200
         else:
             print("Error in subprocess")
             return jsonify({"error": stderr}), 500

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 const ImageUploader = () => {
     const [file, setFile] = useState<File | null>(null);
     const [responseImage, setResponseImage] = useState<string | null>(null);
+    const [detectionResults, setDetectionResults] = useState<any>(null);  // New state for JSON results
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
@@ -28,6 +29,7 @@ const ImageUploader = () => {
             if (response.ok) {
                 // Assuming the returned image URL is part of the response
                 setResponseImage(`http://127.0.0.1:5000/${data.detection_image}`);
+                setDetectionResults(data.predictions);  // Store detection JSON results
             } else {
                 console.error(data.error);
             }
@@ -70,6 +72,20 @@ const ImageUploader = () => {
                         </a>
                     </p>
                     <img src={responseImage} alt="Processed" />
+                </div>
+            )}
+            {detectionResults && (
+                <div>
+                    <h2>Detection Results:</h2>
+                    <ul>
+                        {detectionResults.map((item: any, index: number) => (
+                            <li key={index}>
+                                <strong>Label:</strong> {item.label}, <strong>Score:</strong> {item.score.toFixed(2)}
+                                <br />
+                                <strong>Box:</strong> xmin: {item.box.xmin}, ymin: {item.box.ymin}, xmax: {item.box.xmax}, ymax: {item.box.ymax}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             )}
         </div>
